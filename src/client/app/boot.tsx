@@ -7,7 +7,7 @@ const routes = RoutesModule.routes;
 
 function renderApp() {
     render(
-        <BrowserRouter children={routes} basename="/" />,
+        <BrowserRouter children={routes} />,
         document.getElementById('app')
     );
 }
