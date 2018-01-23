@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es2015",
+    "jsx": "react",
+    "sourceMap": true,
+    "skipDefaultLibCheck": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "allowJs": true
+  },
+  "exclude": [
+    "bin",
+    "node_modules"
+  ]
+}
