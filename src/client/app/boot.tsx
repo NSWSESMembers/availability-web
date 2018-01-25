@@ -2,12 +2,16 @@ import * as React from 'react';
 import {render} from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import * as RoutesModule from './routes';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Provider } from 'react-redux';
+import store from './Components/Store';
 
-const routes = RoutesModule.routes;
+let routes = RoutesModule.routes;
 
 function renderApp() {
     render(
-        <BrowserRouter children={routes} />,
+        <Provider store={store}><BrowserRouter children={routes} /></Provider>,
         document.getElementById('app')
     );
 }
@@ -15,9 +19,9 @@ function renderApp() {
 renderApp();
 
 // Allow Hot Module Replacement
-// if (module.hot) {
-//     module.hot.accept('./routes', () => {
-//         routes = require<typeof RoutesModule>('./routes').routes;
-//         renderApp();
-//     });
-// }
+if (module.hot) {
+    module.hot.accept('./routes', () => {
+        routes = require<typeof RoutesModule>('./routes').routes;
+        renderApp();
+    });
+}
