@@ -1,5 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import strings from '../../Resources/Strings';
 import { mapDispatchToProps } from '../../StoreDefinitions';
 
@@ -29,8 +30,11 @@ class Header extends React.Component<any, any> {
                 </div>
                 <div className="collapse navbar-collapse">
                     <ul className="nav navbar-nav navbar-right">
+                        <li><Link to="/groups">{strings.header_link_groups}</Link></li>
+                        <li><Link to="/requests">{strings.header_link_requests}</Link></li>
+                        <li><Link to="/reports">{strings.header_link_reports}</Link></li>
                         <li className="dropdown">
-                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{userDetails.userFirstName} {userDetails.userLastName} <span className="caret"></span></a>
+                            <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{userDetails.userFirstName} {userDetails.userLastName} <span className="caret"></span></a>
                             <ul className="dropdown-menu">
                                 <li><a href="#">Action 1</a></li>
                                 <li><a href="#">Action 2</a></li>

@@ -24,6 +24,7 @@
     "@types/webpack-env": "^1.13.3",
     "axios": "^0.17.1",
     "bootstrap": "^3.3.7",
+    "fs": "0.0.1-security",
     "jquery": "^3.3.1",
     "material-ui": "^0.20.0",
     "popper.js": "^1.12.9",
