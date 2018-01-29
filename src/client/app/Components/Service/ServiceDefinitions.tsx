@@ -1,1 +1,1 @@
-export const GET_USER_INFO = "";
+export const GET_USER_INFO = "/Units/Get";

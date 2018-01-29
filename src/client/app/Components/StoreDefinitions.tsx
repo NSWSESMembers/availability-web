@@ -1,3 +1,5 @@
+import * as ServiceFunctions from './Service/ServiceFunctions';
+
 export const SET_ROUTE = "set_route";
 export const UPDATE_USER_DETAILS = "update_user_details";
 
@@ -12,14 +14,13 @@ export function mapDispatchToProps(dispatch) {
                 }
             })
         },
-        updateUserDetails: async () => {
-            dispatch({
-                type: UPDATE_USER_DETAILS,
-                payload: {
-                    userFirstName: "",
-                    userLastName: ""
-                }
-            })
+        updateUserDetails: () => {
+            ServiceFunctions.getUserInfo().then(
+                (result) => dispatch({
+                    type: UPDATE_USER_DETAILS,
+                    payload: result
+                })
+            );
         }
     }
 }

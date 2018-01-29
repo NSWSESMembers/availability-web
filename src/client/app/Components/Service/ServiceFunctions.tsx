@@ -22,9 +22,14 @@ export async function getUserInfo() {
         validateStatus: (status) => true,
         timeout: GlobalConfig.API_TIMEOUT
     }).then((response) => {
+        
         switch (response.status) {
             case 200:
                 result.status = 1;
+                result.userDetails = {
+                    userFirstName: "Simon",
+                    userLastName: "Gethin"
+                }
                 break;
             case 401:
                 result.status = 2;
