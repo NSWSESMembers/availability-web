@@ -7,9 +7,9 @@
     "jsx": "react",
     "sourceMap": true,
     "skipDefaultLibCheck": true,
-    "strict": true,
+    "strict": false,
     "noImplicitAny": false,
-    "allowJs": true
+    "allowJs": true,
   },
   "exclude": [
     "bin",

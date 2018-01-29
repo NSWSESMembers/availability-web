@@ -2,7 +2,7 @@ import * as StoreDefinitions from '../StoreDefinitions';
 
 export default function navigationReducer(state = {
     currentRoute: {
-        route: "home",
+        route: "/",
         params: null
     }
 }, action) {

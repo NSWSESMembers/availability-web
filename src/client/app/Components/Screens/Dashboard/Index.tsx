@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 
-export default class Dashboard extends React.Component {
+export default class Dashboard extends React.Component<RouteComponentProps<{}>, any> {
     render() {
         return <div />
     }

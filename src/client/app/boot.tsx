@@ -1,17 +1,22 @@
 import * as React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import * as RoutesModule from './routes';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Provider } from 'react-redux';
 import store from './Components/Store';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 let routes = RoutesModule.routes;
 
 function renderApp() {
     render(
-        <Provider store={store}><BrowserRouter children={routes} /></Provider>,
+        <Provider store={store}>
+            <MuiThemeProvider>
+                <BrowserRouter children={routes} />
+            </MuiThemeProvider>
+        </Provider>,
         document.getElementById('app')
     );
 }

@@ -19,7 +19,8 @@ const config = {
         contentBase: './src/client/public',
         hot: true,
         inline: true,
-        port: 5000
+        port: 5000,
+        historyApiFallback: true
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".json"]
