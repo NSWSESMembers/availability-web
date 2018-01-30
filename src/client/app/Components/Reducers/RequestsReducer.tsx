@@ -1,7 +1,15 @@
 import * as StoreDefinitions from '../StoreDefinitions';
+import { formatDateRange, getToday } from '../Utilities/DateTimeTools';
 
 export default function requestsReducer(state = {
-    params: {},
+    params: {
+        startDate: getToday(),
+        endDate: getToday(),
+        dateText: formatDateRange(getToday(), getToday()),
+        groupCode: -1,
+        capabilityCode: -1,
+        priorityCode: -1
+    },
     requests: []
 }, action) {
     switch (action.type) {

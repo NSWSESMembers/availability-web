@@ -3,7 +3,10 @@ import * as ServiceDefinitions from './ServiceDefinitions';
 import * as GlobalConfig from '../Configuration/GlobalConfig';
 import { getToken, getAuthUrl, clearToken } from '../Utilities/AuthService';
 import store from '../Store';
-import * as fs from 'fs';
+import { formatDateRange, formatDate } from '../Utilities/DateTimeTools';
+import * as moment from 'moment';
+
+import requests from '../../Mock/requests';
 
 function makeUrl(methodUrl) {
     return GlobalConfig.BASE_API_URI + methodUrl;
@@ -23,7 +26,7 @@ export async function getUserInfo() {
         validateStatus: (status) => true,
         timeout: GlobalConfig.API_TIMEOUT
     }).then((response) => {
-        
+
         switch (response.status) {
             case 200:
                 result.status = 1;
@@ -46,10 +49,11 @@ export async function getUserInfo() {
     });
     return result;
 }
-export async function getRequests(startDate, endDate, groupCode, capabilityCode, priorityCode) {
+export async function getRequests(startDate: moment.Moment, endDate: moment.Moment, groupCode, capabilityCode, priorityCode) {
     const _params = {
         startDate,
         endDate,
+        dateText: formatDateRange(startDate, endDate),
         groupCode,
         capabilityCode,
         priorityCode
@@ -60,16 +64,21 @@ export async function getRequests(startDate, endDate, groupCode, capabilityCode,
         requests: []
     };
     await axios.get(makeUrl(ServiceDefinitions.GET_REQUESTS), {
-        params: _params,
+        params: {
+            startDate: formatDate(startDate),
+            endDate: formatDate(endDate),
+            groupCode,
+            capabilityCode,
+            priorityCode
+        },
         headers: { Authorization: getToken() },
         validateStatus: (status) => true,
         timeout: GlobalConfig.API_TIMEOUT
     }).then((response) => {
-        
         switch (response.status) {
             case 200:
                 result.status = 1;
-                result.requests = JSON.parse(fs.readFileSync("../../Mock/requests.json").toString());
+                result.requests = requests;
                 break;
             case 401:
                 result.status = 2;

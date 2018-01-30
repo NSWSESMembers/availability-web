@@ -16,6 +16,7 @@
     "no-console": false,
     "align": false,
     "variable-name": false,
-    "no-var-requires": false
+    "no-var-requires": false,
+    "member-ordering": false
   }
 }

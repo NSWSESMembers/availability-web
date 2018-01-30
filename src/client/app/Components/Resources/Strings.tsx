@@ -8,8 +8,10 @@ const strings = new LocalizedStrings({
         header_link_groups: "Groups",
         header_link_requests: "Requests",
         header_link_reports: "Reports",
-        dashboard_title: "Dashboard" + " | " + portalTitle_en,
-        requests_title: "Requests" + " | " + portalTitle_en
+        dashboard_pageTitle: "Dashboard" + " | " + portalTitle_en,
+        requests_pageTitle: "Requests" + " | " + portalTitle_en,
+        requests_title: "Requests",
+        request_button_newRequest: "New Request"
     }
 });
 

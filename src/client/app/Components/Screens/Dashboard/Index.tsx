@@ -4,7 +4,7 @@ import strings from '../../Resources/Strings';
 
 export default class Dashboard extends React.Component<RouteComponentProps<{}>, any> {
     componentWillMount() {
-        document.title = strings.dashboard_title;
+        document.title = strings.dashboard_pageTitle;
     }
     
     render() {
