@@ -1,11 +1,19 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
 import strings from '../../Resources/Strings';
 import { connect } from 'react-redux';
 import { mapDispatchToProps } from '../../StoreDefinitions';
 import RaisedButton from 'material-ui/RaisedButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import {
+    Table,
+    TableBody,
+    TableHeader,
+    TableHeaderColumn,
+    TableRow,
+    TableRowColumn,
+} from 'material-ui/Table';
 import DatetimeRangePicker from '../../Widgets/DateTimeRangePicker';
 import { getMomentDateObject, getToday } from '../../Utilities/DateTimeTools';
 import * as StoreDefinitions from '../../StoreDefinitions';
@@ -65,11 +73,11 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
                     <h3><strong>{strings.requests_title}</strong></h3>
                 </div>
                 <div className="col-xs-6 text-right">
-                    <RaisedButton label={strings.request_button_newRequest} primary={true} className="actionButton" />
+                    <RaisedButton label={strings.requests_button_newRequest} primary={true} className="actionButton" />
                 </div>
             </div>
             <div className="row">
-                <div className='col-xs-12'>
+                <div className='col-xs-12 col-sm-2'>
                     <DatetimeRangePicker className="pull-left alignWithWidget"
                         startDate={requests.params.startDate}
                         endDate={requests.params.endDate}
@@ -79,6 +87,8 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
                             <i className="fa fa-angle-down" />
                         </button>
                     </DatetimeRangePicker>
+                </div>
+                <div className='col-xs-12 col-sm-10'>
                     <DropDownMenu value={requests.params.groupCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, GROUPS_DROPDOWN)} className="pull-left">
                         {enums.groups.map((el, index) => {
                             return <MenuItem key={el.key} value={el.key} primaryText={el.value} />
@@ -94,6 +104,38 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
                             return <MenuItem key={el.key} value={el.key} primaryText={el.value} />
                         })}
                     </DropDownMenu>
+                </div>
+            </div>
+            <hr />
+            <div className="row">
+                <div className='col-xs-12'>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHeaderColumn>{strings.requests_tableHeader_name}</TableHeaderColumn>
+                                <TableHeaderColumn>{strings.requests_tableHeader_group}</TableHeaderColumn>
+                                <TableHeaderColumn>{strings.requests_tableHeader_capability}</TableHeaderColumn>
+                                <TableHeaderColumn>{strings.requests_tableHeader_priority}</TableHeaderColumn>
+                                <TableHeaderColumn>{strings.requests_tableHeader_startDate}</TableHeaderColumn>
+                                <TableHeaderColumn>{strings.requests_tableHeader_endDate}</TableHeaderColumn>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {requests.requests.map((el, index) => {
+                                return <TableRow key={el.key}>
+                                    <TableHeaderColumn><Link to={{
+                                        pathname: '/requests/edit-request',
+                                        search: '?key=' + el.key
+                                    }}>{el.name}</Link></TableHeaderColumn>
+                                    <TableHeaderColumn>{el.groupTitle}</TableHeaderColumn>
+                                    <TableHeaderColumn>{el.capabilityTitle}</TableHeaderColumn>
+                                    <TableHeaderColumn>{el.priorityTitle}</TableHeaderColumn>
+                                    <TableHeaderColumn>{el.startDate}</TableHeaderColumn>
+                                    <TableHeaderColumn>{el.endDate}</TableHeaderColumn>
+                                </TableRow>
+                            })}
+                        </TableBody>
+                    </Table>
                 </div>
             </div>
         </div>

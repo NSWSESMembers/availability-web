@@ -11,7 +11,13 @@ const strings = new LocalizedStrings({
         dashboard_pageTitle: "Dashboard" + " | " + portalTitle_en,
         requests_pageTitle: "Requests" + " | " + portalTitle_en,
         requests_title: "Requests",
-        request_button_newRequest: "New Request"
+        requests_button_newRequest: "New Request",
+        requests_tableHeader_name: "Name",
+        requests_tableHeader_group: "Group",
+        requests_tableHeader_capability: "Capability",
+        requests_tableHeader_priority: "Priority",
+        requests_tableHeader_startDate: "Start Date",
+        requests_tableHeader_endDate: "End Date"
     }
 });
 
