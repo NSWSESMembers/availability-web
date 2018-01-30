@@ -17,7 +17,8 @@ const strings = new LocalizedStrings({
         requests_tableHeader_capability: "Capability",
         requests_tableHeader_priority: "Priority",
         requests_tableHeader_startDate: "Start Date",
-        requests_tableHeader_endDate: "End Date"
+        requests_tableHeader_endDate: "End Date",
+        editRequest_pageTitle: "Request Details" + " | " + portalTitle_en,
     }
 });
 

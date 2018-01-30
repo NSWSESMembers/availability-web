@@ -11,6 +11,7 @@ import requests from '../../Mock/requests';
 import groups from '../../Mock/groups';
 import capabilities from '../../Mock/capabilities';
 import priorities from '../../Mock/priorities';
+import request from '../../Mock/request';
 
 function makeUrl(methodUrl) {
     return GlobalConfig.BASE_API_URI + methodUrl;
@@ -125,6 +126,38 @@ export async function getList(listType) {
                         result.items = priorities;
                         break;
                 }
+                break;
+            case 401:
+                result.status = 2;
+                clearToken();
+                switchToLogin();
+                break;
+            default:
+                result.status = -1
+                break;
+        }
+    }).catch((error) => {
+        result.status = -1;
+    });
+    return result;
+}
+export async function getRequest(requestId) {
+    const result = {
+        status: -1,
+        data: {}
+    };
+    await axios.get(makeUrl(ServiceDefinitions.GET_REQUEST), {
+        params: {
+            requestId: requestId
+        },
+        headers: { Authorization: getToken() },
+        validateStatus: (status) => true,
+        timeout: GlobalConfig.API_TIMEOUT
+    }).then((response) => {
+        switch (response.status) {
+            case 200:
+                result.status = 1;
+                result.data = request;
                 break;
             case 401:
                 result.status = 2;
