@@ -5,8 +5,12 @@ import { getToken, getAuthUrl, clearToken } from '../Utilities/AuthService';
 import store from '../Store';
 import { formatDateRange, formatDate } from '../Utilities/DateTimeTools';
 import * as moment from 'moment';
+import * as StoreDefinitions from '../StoreDefinitions';
 
 import requests from '../../Mock/requests';
+import groups from '../../Mock/groups';
+import capabilities from '../../Mock/capabilities';
+import priorities from '../../Mock/priorities';
 
 function makeUrl(methodUrl) {
     return GlobalConfig.BASE_API_URI + methodUrl;
@@ -79,6 +83,48 @@ export async function getRequests(startDate: moment.Moment, endDate: moment.Mome
             case 200:
                 result.status = 1;
                 result.requests = requests;
+                break;
+            case 401:
+                result.status = 2;
+                clearToken();
+                switchToLogin();
+                break;
+            default:
+                result.status = -1
+                break;
+        }
+    }).catch((error) => {
+        result.status = -1;
+    });
+    return result;
+}
+export async function getList(listType) {
+    const result = {
+        status: -1,
+        items: []
+    };
+    await axios.get(makeUrl(ServiceDefinitions.GET_GROUPS), {
+        params: {
+            listType: listType
+        },
+        headers: { Authorization: getToken() },
+        validateStatus: (status) => true,
+        timeout: GlobalConfig.API_TIMEOUT
+    }).then((response) => {
+        switch (response.status) {
+            case 200:
+                result.status = 1;
+                switch (listType) {
+                    case StoreDefinitions.LIST_TYPE_GROUPS:
+                        result.items = groups;
+                        break;
+                    case StoreDefinitions.LIST_TYPE_CAPABILITIES:
+                        result.items = capabilities;
+                        break;
+                    case StoreDefinitions.LIST_TYPE_PRIORITIES:
+                        result.items = priorities;
+                        break;
+                }
                 break;
             case 401:
                 result.status = 2;

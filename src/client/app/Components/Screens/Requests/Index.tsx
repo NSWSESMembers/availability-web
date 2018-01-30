@@ -4,22 +4,60 @@ import strings from '../../Resources/Strings';
 import { connect } from 'react-redux';
 import { mapDispatchToProps } from '../../StoreDefinitions';
 import RaisedButton from 'material-ui/RaisedButton';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 import DatetimeRangePicker from '../../Widgets/DateTimeRangePicker';
-import { getMomentDateObject } from '../../Utilities/DateTimeTools';
+import { getMomentDateObject, getToday } from '../../Utilities/DateTimeTools';
+import * as StoreDefinitions from '../../StoreDefinitions';
+
+const GROUPS_DROPDOWN = 'groups_dropdown';
+const CAPABILITIES_DROPDOWN = 'capabilities_dropdown';
+const PRIORITY_DROPDOWN = 'priority_dropdown';
 
 class Requests extends React.Component<RouteComponentProps<{}>, any> {
+    _startDate = getToday();
+    _endDate = getToday();
+    _groupCode = -1;
+    _capabilityCode = -1;
+    _priorityCode = -1;
+
     componentWillMount() {
         document.title = strings.requests_pageTitle;
-        const today = getMomentDateObject(new Date());
-        this.props.populateRequests(today, today);
+        this.populateRequests();
+        this.props.populateList(StoreDefinitions.LIST_TYPE_GROUPS);
+        this.props.populateList(StoreDefinitions.LIST_TYPE_CAPABILITIES);
+        this.props.populateList(StoreDefinitions.LIST_TYPE_PRIORITIES);
     }
 
     handleDateRangeChange(event, picker) {
-        this.props.populateRequests(picker.startDate, picker.endDate);
+        this._startDate = picker.startDate;
+        this._endDate = picker.endDate;
+        this.populateRequests();
+    }
+
+    handleDropDownChange = (event, index, value, item) => {
+        switch (item) {
+            case GROUPS_DROPDOWN:
+                this._groupCode = value;
+                break;
+
+            case CAPABILITIES_DROPDOWN:
+                this._capabilityCode = value;
+                break;
+
+            case PRIORITY_DROPDOWN:
+                this._priorityCode = value;
+                break;
+        }
+        this.populateRequests();
+    }
+
+    populateRequests = () => {
+        this.props.populateRequests(this._startDate, this._endDate, this._groupCode, this._capabilityCode, this._priorityCode);
     }
 
     render() {
-        const { requests } = this.props;
+        const { requests, enums } = this.props;
 
         return <div className='container-fluid content'>
             <div className='row'>
@@ -32,7 +70,7 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
             </div>
             <div className="row">
                 <div className='col-xs-12'>
-                    <DatetimeRangePicker
+                    <DatetimeRangePicker className="pull-left alignWithWidget"
                         startDate={requests.params.startDate}
                         endDate={requests.params.endDate}
                         onApply={this.handleDateRangeChange.bind(this)} >
@@ -41,6 +79,21 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
                             <i className="fa fa-angle-down" />
                         </button>
                     </DatetimeRangePicker>
+                    <DropDownMenu value={requests.params.groupCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, GROUPS_DROPDOWN)} className="pull-left">
+                        {enums.groups.map((el, index) => {
+                            return <MenuItem key={el.key} value={el.key} primaryText={el.value} />
+                        })}
+                    </DropDownMenu>
+                    <DropDownMenu value={requests.params.capabilityCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, CAPABILITIES_DROPDOWN)} className="pull-left">
+                        {enums.capabilities.map((el, index) => {
+                            return <MenuItem key={el.key} value={el.key} primaryText={el.value} />
+                        })}
+                    </DropDownMenu>
+                    <DropDownMenu value={requests.params.priorityCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, PRIORITY_DROPDOWN)} className="pull-left">
+                        {enums.priorities.map((el, index) => {
+                            return <MenuItem key={el.key} value={el.key} primaryText={el.value} />
+                        })}
+                    </DropDownMenu>
                 </div>
             </div>
         </div>
@@ -49,7 +102,8 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
 
 const mapStateToProps = (state) => {
     return {
-        requests: state.requests
+        requests: state.requests,
+        enums: state.enums
     };
 };
 
