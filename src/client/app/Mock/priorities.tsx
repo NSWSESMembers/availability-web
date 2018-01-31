@@ -1,7 +1,7 @@
 const priorities = [
     {
         key: -1,
-        value: "---Priorities---"
+        value: "-- Select Priority --"
     },
     {
         key: 1,

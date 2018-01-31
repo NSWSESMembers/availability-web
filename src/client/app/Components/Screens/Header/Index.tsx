@@ -8,8 +8,12 @@ class Header extends React.Component<any, any> {
     componentWillReceiveProps(nextProps) {
         const { globalNavigation } = nextProps;
         const { history } = this.props;
-        if (globalNavigation.route !== this.props.globalNavigation.route) {
-            history.replace(globalNavigation.route);
+        if (globalNavigation.currentRoute !== this.props.globalNavigation.currentRoute) {
+            const newLocation = {
+                pathname: globalNavigation.currentRoute.route,
+                search: globalNavigation.currentRoute.search
+              }
+            history.replace(newLocation);
         }
     }
 

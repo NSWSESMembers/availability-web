@@ -8,15 +8,17 @@ export const POPULATE_LIST = "populate_list";
 export const LIST_TYPE_GROUPS = "list_type_groups";
 export const LIST_TYPE_CAPABILITIES = "list_type_capabilities";
 export const LIST_TYPE_PRIORITIES = "list_type_priorities";
+export const LIST_TYPE_HQS = "list_type_hqs";
+export const LIST_TYPE_REQUEST_TYPES = "list_type_request_types";
 
 export function mapDispatchToProps(dispatch) {
     return {
-        setRoute: (route, params) => {
+        setRoute: (route, search) => {
             dispatch({
                 type: SET_ROUTE,
                 payload: {
                     route: route,
-                    params: params
+                    search: search
                 }
             })
         },
@@ -38,13 +40,14 @@ export function mapDispatchToProps(dispatch) {
         },
         populateList: (listType) => {
             ServiceFunctions.getList(listType).then(
-                (result) => dispatch({
+                (result) => { 
+                    dispatch({
                     type: POPULATE_LIST,
                     payload: {
                         listType: listType,
                         items: result.items
                     }
-                })
+                })}
             );
         }
     }

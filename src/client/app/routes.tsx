@@ -5,7 +5,8 @@ import Dashboard from './Components/Screens/Dashboard/Index';
 import Authenticated from "./Components/Utilities/Authenticated";
 import Redirect from "./Components/Screens/Redirect";
 import Requests from './Components/Screens/Requests/Index';
-import EditRequest from './Components/Screens/Requests/EditRequest/Index';
+import ViewRequest from './Components/Screens/Requests/ViewRequest/Index';
+import RequestDetails from './Components/Screens/Requests/RequestDetails/Index';
 
 export const routes = <Router>
     <Switch>
@@ -13,7 +14,8 @@ export const routes = <Router>
             <Route exact path='/' component={Authenticated(Dashboard)} />
             <Route path='/redirect' component={Redirect} />
             <Route exact path='/requests' component={Authenticated(Requests)} />
-            <Route path='/requests/edit-request' component={Authenticated(EditRequest)} />
+            <Route path='/requests/view-request' component={Authenticated(ViewRequest)} />
+            <Route path='/requests/request-details' component={Authenticated(RequestDetails)} />
         </Layout>
     </Switch>
 </Router>;

@@ -18,7 +18,18 @@ const strings = new LocalizedStrings({
         requests_tableHeader_priority: "Priority",
         requests_tableHeader_startDate: "Start Date",
         requests_tableHeader_endDate: "End Date",
-        editRequest_pageTitle: "Request Details" + " | " + portalTitle_en,
+        viewRequest_pageTitle: "Request Details" + " | " + portalTitle_en,
+        requestDetails_add_pageTitle: "New Request" + " | " + portalTitle_en,
+        requestDetails_edit_pageTitle: "Edit Request" + " | " + portalTitle_en,
+        requestDetails_add_title: "New Request",
+        requestDetails_label_name: "Name",
+        requestDetails_hint_name: "Ex. John Smith",
+        requestDetails_label_details: "Details",
+        requestDetails_hint_details: "Request Details",
+        requestDetails_label_group: "Group",
+        requestDetails_label_hq: "Requesting HQ",
+        requestDetails_label_priority: "Priority",
+        requestDetails_label_type: "Type",
     }
 });
 

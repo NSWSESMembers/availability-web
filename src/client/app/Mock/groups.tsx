@@ -1,7 +1,7 @@
 const groups = [
     {
         key: -1,
-        value: "---Groups---"
+        value: "-- Select Group --"
     },
     {
         key: 1,

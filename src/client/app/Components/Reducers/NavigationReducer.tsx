@@ -3,7 +3,7 @@ import * as StoreDefinitions from '../StoreDefinitions';
 export default function navigationReducer(state = {
     currentRoute: {
         route: "/",
-        params: null
+        search: ""
     }
 }, action) {
     switch (action.type) {

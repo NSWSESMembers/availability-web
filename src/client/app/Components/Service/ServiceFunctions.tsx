@@ -12,6 +12,8 @@ import groups from '../../Mock/groups';
 import capabilities from '../../Mock/capabilities';
 import priorities from '../../Mock/priorities';
 import request from '../../Mock/request';
+import hqs from '../../Mock/hqs';
+import requestTypes from '../../Mock/requestTypes';
 
 function makeUrl(methodUrl) {
     return GlobalConfig.BASE_API_URI + methodUrl;
@@ -31,7 +33,6 @@ export async function getUserInfo() {
         validateStatus: (status) => true,
         timeout: GlobalConfig.API_TIMEOUT
     }).then((response) => {
-
         switch (response.status) {
             case 200:
                 result.status = 1;
@@ -124,6 +125,12 @@ export async function getList(listType) {
                         break;
                     case StoreDefinitions.LIST_TYPE_PRIORITIES:
                         result.items = priorities;
+                        break;
+                    case StoreDefinitions.LIST_TYPE_HQS:
+                        result.items = hqs;
+                        break;
+                    case StoreDefinitions.LIST_TYPE_REQUEST_TYPES:
+                        result.items = requestTypes;
                         break;
                 }
                 break;

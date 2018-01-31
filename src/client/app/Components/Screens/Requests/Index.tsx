@@ -17,10 +17,7 @@ import {
 import DatetimeRangePicker from '../../Widgets/DateTimeRangePicker';
 import { getMomentDateObject, getToday } from '../../Utilities/DateTimeTools';
 import * as StoreDefinitions from '../../StoreDefinitions';
-
-const GROUPS_DROPDOWN = 'groups_dropdown';
-const CAPABILITIES_DROPDOWN = 'capabilities_dropdown';
-const PRIORITY_DROPDOWN = 'priority_dropdown';
+import * as Constants from '../../Configuration/Constants';
 
 class Requests extends React.Component<RouteComponentProps<{}>, any> {
     _startDate = getToday();
@@ -45,15 +42,15 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
 
     handleDropDownChange = (event, index, value, item) => {
         switch (item) {
-            case GROUPS_DROPDOWN:
+            case Constants.GROUPS_DROPDOWN:
                 this._groupCode = value;
                 break;
 
-            case CAPABILITIES_DROPDOWN:
+            case Constants.CAPABILITIES_DROPDOWN:
                 this._capabilityCode = value;
                 break;
 
-            case PRIORITY_DROPDOWN:
+            case Constants.PRIORITY_DROPDOWN:
                 this._priorityCode = value;
                 break;
         }
@@ -62,6 +59,10 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
 
     populateRequests = () => {
         this.props.populateRequests(this._startDate, this._endDate, this._groupCode, this._capabilityCode, this._priorityCode);
+    }
+
+    newRequestButton_onClick() {
+        this.props.setRoute("/requests/request-details", "?type=add");
     }
 
     render() {
@@ -73,7 +74,7 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
                     <h3><strong>{strings.requests_title}</strong></h3>
                 </div>
                 <div className="col-xs-6 text-right">
-                    <RaisedButton label={strings.requests_button_newRequest} primary={true} className="actionButton" />
+                    <RaisedButton label={strings.requests_button_newRequest} primary={true} className="actionButton" onClick={this.newRequestButton_onClick.bind(this)} />
                 </div>
             </div>
             <div className="row">
@@ -89,17 +90,17 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
                     </DatetimeRangePicker>
                 </div>
                 <div className='col-xs-12 col-sm-10'>
-                    <DropDownMenu value={requests.params.groupCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, GROUPS_DROPDOWN)} className="pull-left">
+                    <DropDownMenu value={requests.params.groupCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, Constants.GROUPS_DROPDOWN)} className="pull-left">
                         {enums.groups.map((el, index) => {
                             return <MenuItem key={el.key} value={el.key} primaryText={el.value} />
                         })}
                     </DropDownMenu>
-                    <DropDownMenu value={requests.params.capabilityCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, CAPABILITIES_DROPDOWN)} className="pull-left">
+                    <DropDownMenu value={requests.params.capabilityCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, Constants.CAPABILITIES_DROPDOWN)} className="pull-left">
                         {enums.capabilities.map((el, index) => {
                             return <MenuItem key={el.key} value={el.key} primaryText={el.value} />
                         })}
                     </DropDownMenu>
-                    <DropDownMenu value={requests.params.priorityCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, PRIORITY_DROPDOWN)} className="pull-left">
+                    <DropDownMenu value={requests.params.priorityCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, Constants.PRIORITY_DROPDOWN)} className="pull-left">
                         {enums.priorities.map((el, index) => {
                             return <MenuItem key={el.key} value={el.key} primaryText={el.value} />
                         })}

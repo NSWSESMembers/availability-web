@@ -1,7 +1,7 @@
 const capabilities = [
     {
         key: -1,
-        value: "---Capabilities---"
+        value: "-- Select Capability --"
     },
     {
         key: 1,

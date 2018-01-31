@@ -3,7 +3,9 @@ import * as StoreDefinitions from '../StoreDefinitions';
 export default function enumsReducer(state = {
     groups: [],
     capabilities: [],
-    priorities: []
+    priorities: [],
+    hqs: [],
+    requestTypes: []
 }, action) {
     switch (action.type) {
         case StoreDefinitions.POPULATE_LIST:
@@ -25,6 +27,18 @@ export default function enumsReducer(state = {
                     state = {
                         ...state,
                         priorities: items
+                    }
+                    break;
+                case StoreDefinitions.LIST_TYPE_HQS:
+                    state = {
+                        ...state,
+                        hqs: items
+                    }
+                    break;
+                case StoreDefinitions.LIST_TYPE_REQUEST_TYPES:
+                    state = {
+                        ...state,
+                        requestTypes: items
                     }
                     break;
             }

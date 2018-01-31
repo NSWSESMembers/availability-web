@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { mapDispatchToProps } from '../../../StoreDefinitions';
 import strings from '../../../Resources/Strings';
 
-class EditRequest extends React.Component<RouteComponentProps<{}>, any> {
+class ViewRequest extends React.Component<RouteComponentProps<{}>, any> {
     componentWillMount() {
-        document.title = strings.editRequest_pageTitle;
+        document.title = strings.viewRequest_pageTitle;
     }
     
     render() {
@@ -14,4 +14,4 @@ class EditRequest extends React.Component<RouteComponentProps<{}>, any> {
     }
 }
 
-export default connect(null, mapDispatchToProps)(EditRequest);
+export default connect(null, mapDispatchToProps)(ViewRequest);
