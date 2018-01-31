@@ -12,6 +12,13 @@ import * as StoreDefinitions from '../../../StoreDefinitions';
 import TitleColumn from './TitleColumn';
 import ValueColumn from './ValueColumn';
 import Row from './Row';
+import RadioButtonGroup from '../../../Widgets/RadioButtonGroup/RadioButtonGroup';
+import RadioButton from '../../../Widgets/RadioButtonGroup/RadioButton';
+import CheckBox from '../../../Widgets/CheckBox/CheckBox';
+import DatetimeRangePicker from '../../../Widgets/DateTimeRangePicker/DatetimeRangePicker';
+import { getToday, formatDateForView } from '../../../Utilities/DateTimeTools';
+import * as GlobalConfig from '../../../Configuration/GlobalConfig';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class RequestDetails extends React.Component<RouteComponentProps<{}>, any> {
     _isMounted = true;
@@ -22,7 +29,12 @@ class RequestDetails extends React.Component<RouteComponentProps<{}>, any> {
             groupCode: -1,
             hqCode: -1,
             priorityCode: -1,
-            requestTypeCode: 1
+            requestTypeCode: 1,
+            capabilities: [],
+            startDate: getToday(),
+            endDate: getToday(),
+            startDateText: formatDateForView(getToday()),
+            endDateText: formatDateForView(getToday())
         }
     }
 
@@ -30,10 +42,6 @@ class RequestDetails extends React.Component<RouteComponentProps<{}>, any> {
         this._isMounted = true;
         const _type = queryStringToValue(this.props.location.search, "type");
         document.title = (stringIsNullOrEmpty(_type) || _type === "add" ? strings.requestDetails_add_pageTitle : strings.requestDetails_edit_pageTitle);
-        this.props.populateList(StoreDefinitions.LIST_TYPE_GROUPS);
-        this.props.populateList(StoreDefinitions.LIST_TYPE_HQS);
-        this.props.populateList(StoreDefinitions.LIST_TYPE_PRIORITIES);
-        this.props.populateList(StoreDefinitions.LIST_TYPE_REQUEST_TYPES);
     }
 
     componentWillUnmount() {
@@ -48,10 +56,39 @@ class RequestDetails extends React.Component<RouteComponentProps<{}>, any> {
             case Constants.HQ_DROPDOWN:
                 this.setState({ hqCode: value });
                 break;
+        }
+    }
+
+    handleRadioButtonGroupChange = (item, value) => {
+        switch (item) {
             case Constants.PRIORITY_DROPDOWN:
                 this.setState({ priorityCode: value });
                 break;
         }
+    }
+
+    handleCheckBoxChange = (item, checked) => {
+        const { capabilities } = this.state;
+        if (checked) {
+            capabilities.push(item);
+        } else {
+            capabilities.splice(capabilities.indexOf(item), 1);
+        }
+        this.setState({ capabilities });
+    }
+
+    handleStartDateRangeChange(event, picker) {
+        this.setState({
+            startDate: picker.startDate,
+            startDateText: formatDateForView(picker.startDate)
+        })
+    }
+
+    handleEndDateRangeChange(event, picker) {
+        this.setState({
+            endDate: picker.startDate,
+            endDateText: formatDateForView(picker.endDate)
+        })
     }
 
     render() {
@@ -114,13 +151,11 @@ class RequestDetails extends React.Component<RouteComponentProps<{}>, any> {
             <Row>
                 <TitleColumn title={strings.requestDetails_label_priority} />
                 <ValueColumn>
-                    <DropDownMenu value={this.state.priorityCode}
-                        onChange={(event, index, value) => this.handleDropDownChange(event, index, value, Constants.PRIORITY_DROPDOWN)}
-                        className="pull-left" style={dropDownStyle}>
-                        {enums.priorities.map((el, index) => {
-                            return <MenuItem key={el.key} value={el.key} primaryText={el.value} />
+                    <RadioButtonGroup name='priority' onValueChanged={(value) => this.handleRadioButtonGroupChange(Constants.PRIORITY_DROPDOWN, value)}>
+                        {enums.priorities.slice(1, enums.priorities.length).map((el, index) => {
+                            return <RadioButton key={el.key} value={el.key} label={el.value} />
                         })}
-                    </DropDownMenu>
+                    </RadioButtonGroup>
                 </ValueColumn>
                 <div className="col-sm-4" />
             </Row>
@@ -138,6 +173,68 @@ class RequestDetails extends React.Component<RouteComponentProps<{}>, any> {
                 </ValueColumn>
                 <div className="col-sm-4" />
             </Row>
+            <br />
+            <Row>
+                <TitleColumn title={strings.requestDetails_label_capability} />
+                <ValueColumn>
+                    {enums.capabilities.slice(1, enums.capabilities.length).map((el, index) => {
+                        return <CheckBox key={el.key} name={el.key} label={el.value} onChange={(checked) => this.handleCheckBoxChange(el, checked)} />
+                    })}
+                </ValueColumn>
+                <div className="col-sm-4" />
+            </Row>
+            <br />
+            <Row>
+                <TitleColumn title={strings.requestDetails_label_startDate} />
+                <ValueColumn>
+                    <DatetimeRangePicker
+                        className='alignWithWidget'
+                        singleDatePicker
+                        showDropdowns
+                        locale={GlobalConfig.DATE_LOCALE}
+                        startDate={this.state.startDate}
+                        onEvent={this.handleStartDateRangeChange.bind(this)} >
+                        <button className="btn btn-default">
+                            <i className="fa fa-calendar" /> &nbsp;<span>{this.state.startDateText}</span>&nbsp;&nbsp;
+                            <i className="fa fa-angle-down" />
+                        </button>
+                    </DatetimeRangePicker>
+                </ValueColumn>
+                <div className="col-sm-4" />
+            </Row>
+            <br />
+            <Row>
+                <TitleColumn title={strings.requestDetails_label_endDate} />
+                <ValueColumn>
+                    <DatetimeRangePicker
+                        className='alignWithWidget'
+                        singleDatePicker
+                        showDropdowns
+                        locale={GlobalConfig.DATE_LOCALE}
+                        startDate={this.state.endDate}
+                        onEvent={this.handleEndDateRangeChange.bind(this)} >
+                        <button className="btn btn-default">
+                            <i className="fa fa-calendar" /> &nbsp;<span>{this.state.endDateText}</span>&nbsp;&nbsp;
+                            <i className="fa fa-angle-down" />
+                        </button>
+                    </DatetimeRangePicker>
+                </ValueColumn>
+                <div className="col-sm-4" />
+            </Row>
+            <br />
+            <br />
+            <br />
+            <br />
+            <div className='row'>
+                <div className='col-xs-8 text-center'>
+                    <RaisedButton label={strings.requestDetails_button_submit} primary={true} onClick={() => {  }} />
+                </div>
+                <div className='col-xs-4' />
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
         </div>
     }
 }

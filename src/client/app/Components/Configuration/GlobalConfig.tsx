@@ -1,4 +1,5 @@
 import { isDev } from '../Utilities/GeneralTools';
+import * as moment from 'moment';
 
 export const CLIENT_ID = isDev() ? "callout.web.local" : "callout.web.test";
 export const SCOPE = "public";
@@ -10,3 +11,15 @@ export const BASE_API_URI = "https://apitestbeacon.ses.nsw.gov.au/Api/v2";
 export const API_TIMEOUT = 15000;
 
 export const API_DATE_FORMAT = "DD-MM-YYYY";
+export const VIEW_DATE_FORMAT = "DD MMM YYYY";
+export const DATE_LOCALE = {
+    format: 'YYYY-MM-DD',
+    separator: ' - ',
+    applyLabel: 'Apply',
+    cancelLabel: 'Cancel',
+    weekLabel: 'W',
+    customRangeLabel: 'Custom Range',
+    daysOfWeek: moment.weekdaysMin(),
+    monthNames: moment.monthsShort(),
+    firstDay: moment.localeData().firstDayOfWeek(),
+  };

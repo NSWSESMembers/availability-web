@@ -3,15 +3,20 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import Header from '../Header/Index';
 import { isAuthenticated } from '../../Utilities/AuthService';
 import { connect } from 'react-redux';
-import { mapDispatchToProps } from '../../StoreDefinitions';
+import * as StoreDefinitions from '../../StoreDefinitions';
 
 class Layout extends React.Component<RouteComponentProps<{}>, any> {
     componentDidMount() {
         if (isAuthenticated()) {
             this.props.updateUserDetails();
+            this.props.populateList(StoreDefinitions.LIST_TYPE_GROUPS);
+            this.props.populateList(StoreDefinitions.LIST_TYPE_CAPABILITIES);
+            this.props.populateList(StoreDefinitions.LIST_TYPE_PRIORITIES);
+            this.props.populateList(StoreDefinitions.LIST_TYPE_HQS);
+            this.props.populateList(StoreDefinitions.LIST_TYPE_REQUEST_TYPES);
         }
     }
-    
+
     render() {
         return <div>
             {isAuthenticated() ? <Header {...this.props} /> : <div />}
@@ -20,4 +25,4 @@ class Layout extends React.Component<RouteComponentProps<{}>, any> {
     }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(Layout));
+export default connect(null, StoreDefinitions.mapDispatchToProps)(withRouter(Layout));

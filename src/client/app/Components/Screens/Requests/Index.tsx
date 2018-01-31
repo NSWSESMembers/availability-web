@@ -14,7 +14,7 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import DatetimeRangePicker from '../../Widgets/DateTimeRangePicker';
+import DatetimeRangePicker from '../../Widgets/DateTimeRangePicker/DatetimeRangePicker';
 import { getMomentDateObject, getToday } from '../../Utilities/DateTimeTools';
 import * as StoreDefinitions from '../../StoreDefinitions';
 import * as Constants from '../../Configuration/Constants';
@@ -29,9 +29,6 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
     componentWillMount() {
         document.title = strings.requests_pageTitle;
         this.populateRequests();
-        this.props.populateList(StoreDefinitions.LIST_TYPE_GROUPS);
-        this.props.populateList(StoreDefinitions.LIST_TYPE_CAPABILITIES);
-        this.props.populateList(StoreDefinitions.LIST_TYPE_PRIORITIES);
     }
 
     handleDateRangeChange(event, picker) {

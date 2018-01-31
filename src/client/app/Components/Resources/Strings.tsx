@@ -30,6 +30,10 @@ const strings = new LocalizedStrings({
         requestDetails_label_hq: "Requesting HQ",
         requestDetails_label_priority: "Priority",
         requestDetails_label_type: "Type",
+        requestDetails_label_capability: "Capability",
+        requestDetails_label_startDate: "Start Date",
+        requestDetails_label_endDate: "End Date",
+        requestDetails_button_submit: "Submit Request"
     }
 });
 
