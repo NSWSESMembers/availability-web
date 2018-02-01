@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as ServiceDefinitions from './ServiceDefinitions';
 import * as GlobalConfig from '../Configuration/GlobalConfig';
-import { getToken, getAuthUrl, clearToken } from '../Utilities/AuthService';
+import { getToken, getAuthUrl, getLogoutUrl } from '../Utilities/AuthService';
 import store from '../Store';
 import { formatDateRange, formatDate } from '../Utilities/DateTimeTools';
 import * as moment from 'moment';
@@ -20,7 +20,7 @@ function makeUrl(methodUrl) {
 }
 
 function switchToLogin() {
-    window.location.assign(getAuthUrl());
+    window.location.assign(getLogoutUrl());
 }
 
 export async function getUserInfo() {
@@ -37,13 +37,11 @@ export async function getUserInfo() {
             case 200:
                 result.status = 1;
                 result.userDetails = {
-                    userFirstName: "Simon",
-                    userLastName: "Gethin"
+                    userFullName: response.data.FullName
                 }
                 break;
             case 401:
                 result.status = 2;
-                clearToken();
                 switchToLogin();
                 break;
             default:
@@ -88,7 +86,6 @@ export async function getRequests(startDate: moment.Moment, endDate: moment.Mome
                 break;
             case 401:
                 result.status = 2;
-                clearToken();
                 switchToLogin();
                 break;
             default:
@@ -136,7 +133,6 @@ export async function getList(listType) {
                 break;
             case 401:
                 result.status = 2;
-                clearToken();
                 switchToLogin();
                 break;
             default:
@@ -168,7 +164,6 @@ export async function getRequest(requestId) {
                 break;
             case 401:
                 result.status = 2;
-                clearToken();
                 switchToLogin();
                 break;
             default:

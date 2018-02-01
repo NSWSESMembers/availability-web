@@ -47,6 +47,10 @@ export function getAuthUrl() {
     return authUrl;
 }
 
+export function getLogoutUrl() {
+    return GlobalConfig.LOGOUT_URL;
+}
+
 export function isAuthenticated() {
     if (StringTools.stringIsNullOrEmpty(getToken())) {
         return false;

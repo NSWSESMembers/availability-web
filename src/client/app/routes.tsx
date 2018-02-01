@@ -7,12 +7,14 @@ import Redirect from "./Components/Screens/Redirect";
 import Requests from './Components/Screens/Requests/Index';
 import ViewRequest from './Components/Screens/Requests/ViewRequest/Index';
 import RequestDetails from './Components/Screens/Requests/RequestDetails/Index';
+import Logout from './Components/Screens/Logout';
 
 export const routes = <Router>
     <Switch>
         <Layout>
             <Route exact path='/' component={Authenticated(Dashboard)} />
             <Route path='/redirect' component={Redirect} />
+            <Route path='/logout' component={Logout} />
             <Route exact path='/requests' component={Authenticated(Requests)} />
             <Route path='/requests/view-request' component={Authenticated(ViewRequest)} />
             <Route path='/requests/request-details' component={Authenticated(RequestDetails)} />

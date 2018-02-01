@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import strings from '../../Resources/Strings';
 import { mapDispatchToProps } from '../../StoreDefinitions';
+import { getLogoutUrl } from '../../Utilities/AuthService';
 
 class Header extends React.Component<any, any> {
     componentWillReceiveProps(nextProps) {
@@ -15,6 +16,10 @@ class Header extends React.Component<any, any> {
               }
             history.replace(newLocation);
         }
+    }
+
+    signOut = () => {
+        window.location.assign(getLogoutUrl());
     }
 
     render() {
@@ -38,13 +43,13 @@ class Header extends React.Component<any, any> {
                         <li><Link to="/requests">{strings.header_link_requests}</Link></li>
                         <li><Link to="/reports">{strings.header_link_reports}</Link></li>
                         <li className="dropdown">
-                            <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{userDetails.userFirstName} {userDetails.userLastName} <span className="caret"></span></a>
+                            <a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{userDetails.userFullName} <span className="caret"></span></a>
                             <ul className="dropdown-menu">
-                                <li><a href="#">Action 1</a></li>
-                                <li><a href="#">Action 2</a></li>
+                                <li><a href="javascript:void(0);" onClick={() => this.signOut()} >{strings.header_menuItem_signOut}</a></li>
+                                {/* <li><a href="#">Action 2</a></li>
                                 <li><a href="#">Action 3</a></li>
                                 <li role="separator" className="divider"></li>
-                                <li><a href="#">Action 4</a></li>
+                                <li><a href="#">Action 4</a></li> */}
                             </ul>
                         </li>
                     </ul>

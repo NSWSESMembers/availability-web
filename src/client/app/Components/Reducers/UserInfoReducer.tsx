@@ -2,8 +2,7 @@ import * as StoreDefinitions from '../StoreDefinitions';
 
 export default function userInfoReducer(state = {
     userDetails: {
-        userFirstName: "",
-        userLastName: ""
+        userFullName: ""
     }
 }, action) {
     switch (action.type) {

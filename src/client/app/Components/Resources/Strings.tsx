@@ -8,6 +8,7 @@ const strings = new LocalizedStrings({
         header_link_groups: "Groups",
         header_link_requests: "Requests",
         header_link_reports: "Reports",
+        header_menuItem_signOut: "Sign Out",
         dashboard_pageTitle: "Dashboard" + " | " + portalTitle_en,
         requests_pageTitle: "Requests" + " | " + portalTitle_en,
         requests_title: "Requests",
