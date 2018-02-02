@@ -11,7 +11,6 @@ import requests from '../../Mock/requests';
 import groups from '../../Mock/groups';
 import capabilities from '../../Mock/capabilities';
 import priorities from '../../Mock/priorities';
-import request from '../../Mock/request';
 import hqs from '../../Mock/hqs';
 import requestTypes from '../../Mock/requestTypes';
 
@@ -144,10 +143,17 @@ export async function getList(listType) {
     });
     return result;
 }
-export async function getRequest(requestId) {
+export async function getRequest(requestId, startDate, endDate, capabilityCode) {
+    const _params = {
+        startDate,
+        endDate,
+        dateText: formatDateRange(startDate, endDate),
+        capabilityCode
+    };
     const result = {
         status: -1,
-        data: {}
+        params: _params,
+        request: {}
     };
     await axios.get(makeUrl(ServiceDefinitions.GET_REQUEST), {
         params: {
@@ -160,7 +166,10 @@ export async function getRequest(requestId) {
         switch (response.status) {
             case 200:
                 result.status = 1;
-                result.data = request;
+                const _requests = requests.filter((item) => {
+                    return item.details.key === requestId;
+                });
+                result.request = (_requests.length !== 0 ? _requests[0] : {});
                 break;
             case 401:
                 result.status = 2;

@@ -15,7 +15,7 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import DatetimeRangePicker from '../../Widgets/DateTimeRangePicker/DatetimeRangePicker';
-import { getMomentDateObject, getToday } from '../../Utilities/DateTimeTools';
+import { getToday } from '../../Utilities/DateTimeTools';
 import * as StoreDefinitions from '../../StoreDefinitions';
 import * as Constants from '../../Configuration/Constants';
 
@@ -28,6 +28,9 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
 
     componentWillMount() {
         document.title = strings.requests_pageTitle;
+    }
+
+    componentDidMount() {
         this.populateRequests();
     }
 
@@ -120,16 +123,17 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
                         </TableHeader>
                         <TableBody>
                             {requests.requests.map((el, index) => {
-                                return <TableRow key={el.key}>
+                                const { details } = el;
+                                return <TableRow key={details.key}>
                                     <TableHeaderColumn><Link to={{
-                                        pathname: '/requests/edit-request',
-                                        search: '?key=' + el.key
-                                    }}>{el.name}</Link></TableHeaderColumn>
-                                    <TableHeaderColumn>{el.groupTitle}</TableHeaderColumn>
-                                    <TableHeaderColumn>{el.capabilityTitle}</TableHeaderColumn>
-                                    <TableHeaderColumn>{el.priorityTitle}</TableHeaderColumn>
-                                    <TableHeaderColumn>{el.startDate}</TableHeaderColumn>
-                                    <TableHeaderColumn>{el.endDate}</TableHeaderColumn>
+                                        pathname: '/requests/view-request',
+                                        search: '?key=' + details.key
+                                    }}>{details.name}</Link></TableHeaderColumn>
+                                    <TableHeaderColumn>{details.groupTitle}</TableHeaderColumn>
+                                    <TableHeaderColumn>{details.capabilityTitle}</TableHeaderColumn>
+                                    <TableHeaderColumn>{details.priorityTitle}</TableHeaderColumn>
+                                    <TableHeaderColumn>{details.startDate}</TableHeaderColumn>
+                                    <TableHeaderColumn>{details.endDate}</TableHeaderColumn>
                                 </TableRow>
                             })}
                         </TableBody>
