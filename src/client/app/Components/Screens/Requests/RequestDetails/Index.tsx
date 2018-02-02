@@ -191,6 +191,7 @@ class RequestDetails extends React.Component<RouteComponentProps<{}>, any> {
                         className='alignWithWidget'
                         singleDatePicker
                         showDropdowns
+                        drops='up'
                         locale={GlobalConfig.DATE_LOCALE}
                         startDate={this.state.startDate}
                         onEvent={this.handleStartDateRangeChange.bind(this)} >
@@ -210,6 +211,7 @@ class RequestDetails extends React.Component<RouteComponentProps<{}>, any> {
                         className='alignWithWidget'
                         singleDatePicker
                         showDropdowns
+                        drops='up'
                         locale={GlobalConfig.DATE_LOCALE}
                         startDate={this.state.endDate}
                         onEvent={this.handleEndDateRangeChange.bind(this)} >

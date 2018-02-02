@@ -10,6 +10,19 @@
     margin-top: 16px;
 }
 
+.borderedTable {
+    border-width: 0.5px !important;
+}
+
+.borderedTable > thead > tr > th,
+        .table-bordered > tbody > tr > th,
+        .table-bordered > tfoot > tr > th,
+        .table-bordered > thead > tr > td,
+        .table-bordered > tbody > tr > td,
+        .table-bordered > tfoot > tr > td {
+            border-width: 0.5px !important;
+}
+
 .text-xs-left { text-align: left; }
 .text-xs-right { text-align: right; }
 .text-xs-center { text-align: center; }

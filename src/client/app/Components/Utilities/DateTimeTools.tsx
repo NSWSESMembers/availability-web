@@ -27,6 +27,15 @@ export function formatDateForView(momentDate: moment.Moment) {
     }
 }
 
+export function formatDateForViewFromString(date: string) {
+    const momentDate = moment(date);
+    if (momentDate !== null) {
+        return momentDate.format(GlobalConfig.VIEW_DATE_FORMAT);
+    } else {
+        return '';
+    }
+}
+
 export function getMomentDateObject(date: Date) {
     return moment(date.toDateString());
 }

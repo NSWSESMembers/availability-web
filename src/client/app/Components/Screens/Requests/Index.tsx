@@ -15,7 +15,7 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import DatetimeRangePicker from '../../Widgets/DateTimeRangePicker/DatetimeRangePicker';
-import { getToday } from '../../Utilities/DateTimeTools';
+import { getToday, formatDateForViewFromString } from '../../Utilities/DateTimeTools';
 import * as StoreDefinitions from '../../StoreDefinitions';
 import * as Constants from '../../Configuration/Constants';
 
@@ -132,8 +132,8 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
                                     <TableHeaderColumn>{details.groupTitle}</TableHeaderColumn>
                                     <TableHeaderColumn>{details.capabilityTitle}</TableHeaderColumn>
                                     <TableHeaderColumn>{details.priorityTitle}</TableHeaderColumn>
-                                    <TableHeaderColumn>{details.startDate}</TableHeaderColumn>
-                                    <TableHeaderColumn>{details.endDate}</TableHeaderColumn>
+                                    <TableHeaderColumn>{formatDateForViewFromString(details.startDate)}</TableHeaderColumn>
+                                    <TableHeaderColumn>{formatDateForViewFromString(details.endDate)}</TableHeaderColumn>
                                 </TableRow>
                             })}
                         </TableBody>

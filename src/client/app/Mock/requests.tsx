@@ -8,10 +8,78 @@ const requests = [
             groupTitle: "Kiama",
             capabilityTitle: "Food Rescue 1",
             priorityTitle: "High",
-            startDate: "22 Jan 2018",
-            endDate: "28 Jan 2018"
+            startDate: "2018-01-26T00:00:00+10:00",
+            endDate: "2018-01-28T00:00:00+10:00"
         },
-        people: []
+        people: [
+            {
+                key: "0DC1211F-EE20-4347-B2A4-83A3F2A98A99",
+                name: "ClarK Kent",
+                availability: [
+                    {
+                        dayIndex: 5,
+                        schedule: [
+                            { time: "ALL_DAY", flag: "0" }
+                        ]
+                    },
+                    {
+                        dayIndex: 6,
+                        schedule: [
+                            { time: "09:00AM - 05:00PM", flag: "0" }
+                        ]
+                    },
+                    {
+                        dayIndex: 7,
+                        schedule: [
+                            { time: "ALL_DAY", flag: "0" }
+                        ]
+                    }
+                ]
+            },
+            {
+                key: "64352395-A31A-499D-B737-96C7278C7F70",
+                name: "Lois Lane",
+                availability: [
+                    {
+                        dayIndex: 5,
+                        schedule: [
+                            { time: "ALL_DAY", flag: "1" }
+                        ]
+                    },
+                    {
+                        dayIndex: 6,
+                        schedule: [
+                            { time: "ALL_DAY", flag: "1" }
+                        ]
+                    }
+                ]
+            },
+            {
+                key: "D9FCF2AD-0FAA-45F0-BEC3-4C4505311EBA",
+                name: "Bruce Wayne",
+                availability: [
+                    {
+                        dayIndex: 5,
+                        schedule: [
+                            { time: "ALL_DAY", flag: "1" }
+                        ]
+                    },
+                    {
+                        dayIndex: 6,
+                        schedule: [
+                            { time: "09:00AM - 12:00PM", flag: "2" }
+                        ]
+                    },
+                    {
+                        dayIndex: 6,
+                        schedule: [
+                            { time: "12:00AM - 05:00AM", flag: "2" },
+                            { time: "09:00PM - 12:00PM", flag: "2" }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     {
         details: {
@@ -20,8 +88,8 @@ const requests = [
             groupTitle: "Kiama",
             capabilityTitle: "Firsd Aid, Chainsaw",
             priorityTitle: "Medium",
-            startDate: "28 Jan 2018",
-            endDate: "28 Feb 2018"
+            startDate: "2018-01-28T00:00:00+10:00",
+            endDate: "2018-02-28T00:00:00+10:00"
         },
         people: []
     },
@@ -32,8 +100,8 @@ const requests = [
             groupTitle: "Kiama",
             capabilityTitle: "",
             priorityTitle: "Low",
-            startDate: "04 Feb 2018",
-            endDate: "06 Feb 2018"
+            startDate: "2018-01-15T00:00:00+10:00",
+            endDate: "2018-01-17T00:00:00+10:00"
         },
         people: []
     }

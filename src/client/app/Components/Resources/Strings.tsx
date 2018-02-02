@@ -5,6 +5,13 @@ const portalTitle_en = "SES Availability";
 const strings = new LocalizedStrings({
     en: {
         general_brand: portalTitle_en,
+        general_weekday_monday: "Monday",
+        general_weekday_tuesday: "Tuesday",
+        general_weekday_wednesday: "Wednesday",
+        general_weekday_thursday: "Thursday",
+        general_weekday_friday: "Friday",
+        general_weekday_saturday: "Saturday",
+        general_weekday_sunday: "Sunday",
         header_link_groups: "Groups",
         header_link_requests: "Requests",
         header_link_reports: "Reports",
@@ -19,7 +26,6 @@ const strings = new LocalizedStrings({
         requests_tableHeader_priority: "Priority",
         requests_tableHeader_startDate: "Start Date",
         requests_tableHeader_endDate: "End Date",
-        viewRequest_pageTitle: "Request Details" + " | " + portalTitle_en,
         requestDetails_add_pageTitle: "New Request" + " | " + portalTitle_en,
         requestDetails_edit_pageTitle: "Edit Request" + " | " + portalTitle_en,
         requestDetails_add_title: "New Request",
@@ -34,7 +40,9 @@ const strings = new LocalizedStrings({
         requestDetails_label_capability: "Capability",
         requestDetails_label_startDate: "Start Date",
         requestDetails_label_endDate: "End Date",
-        requestDetails_button_submit: "Submit Request"
+        requestDetails_button_submit: "Submit Request",
+        viewRequest_pageTitle: "Request Details" + " | " + portalTitle_en,
+        viewRequest_link_addNewPerson: "Add New Person"
     }
 });
 
