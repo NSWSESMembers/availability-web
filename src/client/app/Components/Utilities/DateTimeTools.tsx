@@ -43,3 +43,9 @@ export function getMomentDateObject(date: Date) {
 export function getToday(): moment.Moment {
     return getMomentDateObject(new Date());
 }
+
+export function addDaysToDate(date: Date, days: number) {
+    const result = new Date(date);
+    result.setDate(date.getDate() + days);
+    return result;
+}

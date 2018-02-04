@@ -17,6 +17,7 @@
     "align": false,
     "variable-name": false,
     "no-var-requires": false,
-    "member-ordering": false
+    "member-ordering": false,
+    "object-literal-sort-keys": false
   }
 }

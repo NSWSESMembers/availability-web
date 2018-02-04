@@ -1,44 +1,54 @@
 import * as React from 'react';
 import * as moment from 'moment';
+import { addDaysToDate } from '../../Utilities/DateTimeTools';
 
 export default class WeekRangePicker extends React.Component<any, any> {
+    _today;
+    
     constructor(props) {
         super(props);
-        const _today = moment((new Date()).toDateString());
         this.state = {
-            today: _today,
-            startDate: _today,
-            endDate: _today
+            today: null,
+            startDate: '',
+            endDate: ''
         }
     }
 
     componentWillMount() {
+        this._today = new Date();
         this.calculateWeekDays();
     }
 
     calculateWeekDays = () => {
-        this.setState({ 
-            startDate: this.state.today.add((this.state.today.day() - 1) * (-1), 'days'),
-            endDate: this.state.today.add(7 - this.state.today.day(), 'days')
+        const _todayMoment = moment(this._today.toDateString());
+        const _day = _todayMoment.day();
+        const _startDate = addDaysToDate(this._today, (_day - 1) * (-1));
+        const _endDate = addDaysToDate(this._today, 7 - _day);
+
+        this.setState({
+            startDate: moment(_startDate.toDateString()).format("DD-MM"),
+            endDate: moment(_endDate.toDateString()).format("DD-MM")
         });
     }
 
     handleRightButton = () => {
-
+        this._today = addDaysToDate(this._today, 7);
+        this.calculateWeekDays();
     }
 
     handleLeftButton = () => {
-
+        this._today = addDaysToDate(this._today, -7);
+        this.calculateWeekDays();
     }
 
     render() {
         return <div className={this.props.className + ' input-group'}>
             <span className="input-group-btn">
-                <button className="btn btn-default" type="button"><i className="fa fa-angle-left" onClick={() => this.handleLeftButton} /></button>
+                <button className="btn btn-default" type="button"><i className="fa fa-angle-left" onClick={() => this.handleLeftButton()} /></button>
             </span>
-            <input className="form-control" readOnly style={{ backgroundColor: 'white', textAlign: 'center' }} value={this.state.startDate.format("DD-MM") + "  -->  " + this.state.endDate.format("DD-MM")} />
+            <input className="form-control" readOnly style={{ backgroundColor: 'white', textAlign: 'center' }} value={this.state.startDate + "  -->  " + this.state.endDate} />
             <span className="input-group-btn">
-                <button className="btn btn-default" type="button"><i className="fa fa-angle-right" onClick={() => this.handleRightButton} /></button>
+                <button className="btn btn-default" type="button"><i className="fa fa-angle-right" onClick={() => this.handleRightButton()} /></button>
             </span>
         </div>
     }
