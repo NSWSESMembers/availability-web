@@ -49,3 +49,9 @@ export function addDaysToDate(date: Date, days: number) {
     result.setDate(date.getDate() + days);
     return result;
 }
+
+export function getWeekDay(startDate: moment.Moment, day: number) {
+    const result = new Date(startDate.toDate());
+    result.setDate(startDate.toDate().getDate() + (day - 1));
+    return moment(result.toDateString()).format("DD-MM");
+}

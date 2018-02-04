@@ -17,6 +17,22 @@ const requests = [
                 name: "ClarK Kent",
                 availability: [
                     {
+                        dayIndex: 1,
+                        schedule: null
+                    },
+                    {
+                        dayIndex: 2,
+                        schedule: null
+                    },
+                    {
+                        dayIndex: 3,
+                        schedule: null
+                    },
+                    {
+                        dayIndex: 4,
+                        schedule: null
+                    },
+                    {
                         dayIndex: 5,
                         schedule: [
                             { time: "ALL_DAY", flag: "0" }
@@ -41,6 +57,22 @@ const requests = [
                 name: "Lois Lane",
                 availability: [
                     {
+                        dayIndex: 1,
+                        schedule: null
+                    },
+                    {
+                        dayIndex: 2,
+                        schedule: null
+                    },
+                    {
+                        dayIndex: 3,
+                        schedule: null
+                    },
+                    {
+                        dayIndex: 4,
+                        schedule: null
+                    },
+                    {
                         dayIndex: 5,
                         schedule: [
                             { time: "ALL_DAY", flag: "1" }
@@ -51,6 +83,10 @@ const requests = [
                         schedule: [
                             { time: "ALL_DAY", flag: "1" }
                         ]
+                    },
+                    {
+                        dayIndex: 7,
+                        schedule: null
                     }
                 ]
             },
@@ -58,6 +94,22 @@ const requests = [
                 key: "D9FCF2AD-0FAA-45F0-BEC3-4C4505311EBA",
                 name: "Bruce Wayne",
                 availability: [
+                    {
+                        dayIndex: 1,
+                        schedule: null
+                    },
+                    {
+                        dayIndex: 2,
+                        schedule: null
+                    },
+                    {
+                        dayIndex: 3,
+                        schedule: null
+                    },
+                    {
+                        dayIndex: 4,
+                        schedule: null
+                    },
                     {
                         dayIndex: 5,
                         schedule: [
@@ -71,7 +123,7 @@ const requests = [
                         ]
                     },
                     {
-                        dayIndex: 6,
+                        dayIndex: 7,
                         schedule: [
                             { time: "12:00AM - 05:00AM", flag: "2" },
                             { time: "09:00PM - 12:00PM", flag: "2" }

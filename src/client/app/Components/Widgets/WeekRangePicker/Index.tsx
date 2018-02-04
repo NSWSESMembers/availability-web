@@ -4,7 +4,7 @@ import { addDaysToDate } from '../../Utilities/DateTimeTools';
 
 export default class WeekRangePicker extends React.Component<any, any> {
     _today;
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -20,6 +20,7 @@ export default class WeekRangePicker extends React.Component<any, any> {
     }
 
     calculateWeekDays = () => {
+        const { onChange } = this.props;
         const _todayMoment = moment(this._today.toDateString());
         const _day = _todayMoment.day();
         const _startDate = addDaysToDate(this._today, (_day - 1) * (-1));
@@ -29,26 +30,28 @@ export default class WeekRangePicker extends React.Component<any, any> {
             startDate: moment(_startDate.toDateString()).format("DD-MM"),
             endDate: moment(_endDate.toDateString()).format("DD-MM")
         });
-    }
 
-    handleRightButton = () => {
-        this._today = addDaysToDate(this._today, 7);
-        this.calculateWeekDays();
-    }
-
-    handleLeftButton = () => {
-        this._today = addDaysToDate(this._today, -7);
-        this.calculateWeekDays();
+        if (onChange) {
+            onChange(moment(_startDate.toDateString()), moment(_endDate.toDateString()));
+        }
     }
 
     render() {
         return <div className={this.props.className + ' input-group'}>
             <span className="input-group-btn">
-                <button className="btn btn-default" type="button"><i className="fa fa-angle-left" onClick={() => this.handleLeftButton()} /></button>
+                <button className="btn btn-default" type="button"><i className="fa fa-angle-left" onClick={() => {
+                    this._today = addDaysToDate(this._today, -7);
+                    this.calculateWeekDays();
+                }} /></button>
             </span>
-            <input className="form-control" readOnly style={{ backgroundColor: 'white', textAlign: 'center' }} value={this.state.startDate + "  -->  " + this.state.endDate} />
+            <input className="form-control" readOnly
+                style={{ backgroundColor: 'white', textAlign: 'center' }}
+                value={this.state.startDate + "  -->  " + this.state.endDate} />
             <span className="input-group-btn">
-                <button className="btn btn-default" type="button"><i className="fa fa-angle-right" onClick={() => this.handleRightButton()} /></button>
+                <button className="btn btn-default" type="button"><i className="fa fa-angle-right" onClick={() => {
+                    this._today = addDaysToDate(this._today, 7);
+                    this.calculateWeekDays();
+                }} /></button>
             </span>
         </div>
     }

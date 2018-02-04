@@ -5,7 +5,7 @@ import { mapDispatchToProps } from '../../../StoreDefinitions';
 import strings from '../../../Resources/Strings';
 import { queryStringToValue } from '../../../Utilities/StringTools';
 import RaisedButton from 'material-ui/RaisedButton';
-import { getToday } from '../../../Utilities/DateTimeTools';
+import { getToday, getWeekDay } from '../../../Utilities/DateTimeTools';
 import DatetimeRangePicker from '../../../Widgets/DateTimeRangePicker/DatetimeRangePicker';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -26,11 +26,6 @@ class ViewRequest extends React.Component<RouteComponentProps<{}>, any> {
         document.title = strings.viewRequest_pageTitle;
     }
 
-    componentDidMount() {
-        this._key = queryStringToValue(this.props.location.search, "key");
-        this.loadRequestDetails();
-    }
-
     componentWillUnmount() {
         this._isMounted = false;
     }
@@ -43,12 +38,6 @@ class ViewRequest extends React.Component<RouteComponentProps<{}>, any> {
         this.props.setRoute("/requests/request-details", "?type=add");
     }
 
-    handleDateRangeChange(event, picker) {
-        this._startDate = picker.startDate;
-        this._endDate = picker.endDate;
-        this.loadRequestDetails();
-    }
-
     handleDropDownChange = (event, index, value, item) => {
         switch (item) {
             case Constants.CAPABILITIES_DROPDOWN:
@@ -58,9 +47,14 @@ class ViewRequest extends React.Component<RouteComponentProps<{}>, any> {
         this.loadRequestDetails();
     }
 
-    addNewPerson = () => {
-
+    handleWeekRangePickerChange = (startDate, endDate) => {
+        this._key = queryStringToValue(this.props.location.search, "key");
+        this._startDate = startDate;
+        this._endDate = endDate;
+        this.loadRequestDetails();
     }
+
+    addNewPerson = () => { }
 
     render() {
         const { details, people } = this.props.request.request;
@@ -78,16 +72,7 @@ class ViewRequest extends React.Component<RouteComponentProps<{}>, any> {
             </div>
             <div className="row">
                 <div className='col-xs-12 col-sm-2'>
-                    <WeekRangePicker className="pull-left alignWithWidget" />
-                    {/* <DatetimeRangePicker className="pull-left alignWithWidget"
-                        startDate={params.startDate}
-                        endDate={params.endDate}
-                        onApply={this.handleDateRangeChange.bind(this)} >
-                        <button className="btn btn-default">
-                            <i className="fa fa-calendar" /> &nbsp;<span>{params.dateText}</span>&nbsp;&nbsp;
-                            <i className="fa fa-angle-down" />
-                        </button>
-                    </DatetimeRangePicker> */}
+                    <WeekRangePicker className="pull-left alignWithWidget" onChange={(startDate, endDate) => this.handleWeekRangePickerChange(startDate, endDate)} />
                 </div>
                 <div className='col-xs-12 col-sm-10'>
                     <DropDownMenu value={params.capabilityCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, Constants.CAPABILITIES_DROPDOWN)} className="pull-left">
@@ -104,18 +89,18 @@ class ViewRequest extends React.Component<RouteComponentProps<{}>, any> {
                         <thead>
                             <tr>
                                 <td><a href='javascript:void(0);' onClick={() => this.addNewPerson()}><i className="fa fa-plus-circle" /> {strings.viewRequest_link_addNewPerson}</a></td>
-                                <td className="text-center">{strings.general_weekday_monday}</td>
-                                <td className="text-center">{strings.general_weekday_tuesday}</td>
-                                <td className="text-center">{strings.general_weekday_wednesday}</td>
-                                <td className="text-center">{strings.general_weekday_thursday}</td>
-                                <td className="text-center">{strings.general_weekday_friday}</td>
-                                <td className="text-center">{strings.general_weekday_saturday}</td>
-                                <td className="text-center">{strings.general_weekday_sunday}</td>
+                                <td className="text-center">{strings.general_weekday_monday + " (" + getWeekDay(this._startDate, 1) + ")"}</td>
+                                <td className="text-center">{strings.general_weekday_tuesday + " (" + getWeekDay(this._startDate, 2) + ")"}</td>
+                                <td className="text-center">{strings.general_weekday_wednesday + " (" + getWeekDay(this._startDate, 3) + ")"}</td>
+                                <td className="text-center">{strings.general_weekday_thursday + " (" + getWeekDay(this._startDate, 4) + ")"}</td>
+                                <td className="text-center">{strings.general_weekday_friday + " (" + getWeekDay(this._startDate, 5) + ")"}</td>
+                                <td className="text-center">{strings.general_weekday_saturday + " (" + getWeekDay(this._startDate, 6) + ")"}</td>
+                                <td className="text-center">{strings.general_weekday_sunday + " (" + getWeekDay(this._startDate, 7) + ")"}</td>
                             </tr>
                         </thead>
                         <tbody>
                             {people.map((el, index) => {
-                                return <TableRow key={el.key} person={el} startDate={this._startDate} endDate={this._endDate} />
+                                return <TableRow key={el.key} person={el} startDate={this._startDate} endDate={this._endDate} requestDetails={details} />
                             })}
                         </tbody>
                     </table>
