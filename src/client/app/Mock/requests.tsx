@@ -8,8 +8,8 @@ const requests = [
             groupTitle: "Kiama",
             capabilityTitle: "Food Rescue 1",
             priorityTitle: "High",
-            startDate: "2018-01-26T00:00:00+10:00",
-            endDate: "2018-01-28T00:00:00+10:00"
+            startDate: "2018-02-05T00:00:00+11:00",
+            endDate: "2018-02-08T00:00:00+11:00"
         },
         people: [
             {
@@ -17,37 +17,21 @@ const requests = [
                 name: "ClarK Kent",
                 availability: [
                     {
-                        dayIndex: 1,
-                        schedule: null
-                    },
-                    {
-                        dayIndex: 2,
-                        schedule: null
-                    },
-                    {
-                        dayIndex: 3,
-                        schedule: null
-                    },
-                    {
-                        dayIndex: 4,
-                        schedule: null
-                    },
-                    {
-                        dayIndex: 5,
+                        date: "2018-02-06T00:00:00+11:00",
                         schedule: [
-                            { time: "ALL_DAY", flag: "0" }
+                            { time: "WHOLE DAY", flag: "0" }
                         ]
                     },
                     {
-                        dayIndex: 6,
+                        date: "2018-02-07T00:00:00+11:00",
                         schedule: [
                             { time: "09:00AM - 05:00PM", flag: "0" }
                         ]
                     },
                     {
-                        dayIndex: 7,
+                        date: "2018-02-08T00:00:00+11:00",
                         schedule: [
-                            { time: "ALL_DAY", flag: "0" }
+                            { time: "WHOLE DAY", flag: "0" }
                         ]
                     }
                 ]
@@ -57,37 +41,17 @@ const requests = [
                 name: "Lois Lane",
                 availability: [
                     {
-                        dayIndex: 1,
-                        schedule: null
-                    },
-                    {
-                        dayIndex: 2,
-                        schedule: null
-                    },
-                    {
-                        dayIndex: 3,
-                        schedule: null
-                    },
-                    {
-                        dayIndex: 4,
-                        schedule: null
-                    },
-                    {
-                        dayIndex: 5,
+                        date: "2018-02-06T00:00:00+11:00",
                         schedule: [
-                            { time: "ALL_DAY", flag: "1" }
+                            { time: "WHOLE DAY", flag: "1" }
                         ]
                     },
                     {
-                        dayIndex: 6,
+                        date: "2018-02-07T00:00:00+11:00",
                         schedule: [
-                            { time: "ALL_DAY", flag: "1" }
+                            { time: "WHOLE DAY", flag: "1" }
                         ]
                     },
-                    {
-                        dayIndex: 7,
-                        schedule: null
-                    }
                 ]
             },
             {
@@ -95,35 +59,19 @@ const requests = [
                 name: "Bruce Wayne",
                 availability: [
                     {
-                        dayIndex: 1,
-                        schedule: null
-                    },
-                    {
-                        dayIndex: 2,
-                        schedule: null
-                    },
-                    {
-                        dayIndex: 3,
-                        schedule: null
-                    },
-                    {
-                        dayIndex: 4,
-                        schedule: null
-                    },
-                    {
-                        dayIndex: 5,
+                        date: "2018-02-06T00:00:00+11:00",
                         schedule: [
-                            { time: "ALL_DAY", flag: "1" }
+                            { time: "WHOLE DAY", flag: "1" }
                         ]
                     },
                     {
-                        dayIndex: 6,
+                        date: "2018-02-07T00:00:00+11:00",
                         schedule: [
                             { time: "09:00AM - 12:00PM", flag: "2" }
                         ]
                     },
                     {
-                        dayIndex: 7,
+                        date: "2018-02-08T00:00:00+11:00",
                         schedule: [
                             { time: "12:00AM - 05:00AM", flag: "2" },
                             { time: "09:00PM - 12:00PM", flag: "2" }
@@ -140,8 +88,8 @@ const requests = [
             groupTitle: "Kiama",
             capabilityTitle: "Firsd Aid, Chainsaw",
             priorityTitle: "Medium",
-            startDate: "2018-01-28T00:00:00+10:00",
-            endDate: "2018-02-28T00:00:00+10:00"
+            startDate: "2018-01-28T00:00:00+11:00",
+            endDate: "2018-02-28T00:00:00+11:00"
         },
         people: []
     },
@@ -152,8 +100,8 @@ const requests = [
             groupTitle: "Kiama",
             capabilityTitle: "",
             priorityTitle: "Low",
-            startDate: "2018-01-15T00:00:00+10:00",
-            endDate: "2018-01-17T00:00:00+10:00"
+            startDate: "2018-01-15T00:00:00+11:00",
+            endDate: "2018-01-17T00:00:00+11:00"
         },
         people: []
     }

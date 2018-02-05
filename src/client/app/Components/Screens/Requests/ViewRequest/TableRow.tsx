@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { addDaysToDate } from '../../../Utilities/DateTimeTools';
+import CellContent from './CellContent';
 
 const TableRow = (props) => {
     const { person, startDate, endDate, requestDetails } = props;
@@ -24,16 +25,18 @@ const TableRow = (props) => {
             return false;
         }
     }
+
+    const rowHeight = 48;
     
     return <tr>
         <td>{person.name}</td>
-        <td className="text-center imageFill">{isInRange(dayDate_1) ? "" : <img src={crossImage} />}</td>
-        <td className="text-center imageFill">{isInRange(dayDate_2) ? "" : <img src={crossImage} />}</td>
-        <td className="text-center imageFill">{isInRange(dayDate_3) ? "" : <img src={crossImage} />}</td>
-        <td className="text-center imageFill">{isInRange(dayDate_4) ? "" : <img src={crossImage} />}</td>
-        <td className="text-center imageFill">{isInRange(dayDate_5) ? "" : <img src={crossImage} />}</td>
-        <td className="text-center imageFill">{isInRange(dayDate_6) ? "" : <img src={crossImage} />}</td>
-        <td className="text-center imageFill">{isInRange(dayDate_7) ? "" : <img src={crossImage} />}</td>
+        <td className="text-center imageFill" style={{ height: rowHeight }}>{isInRange(dayDate_1) ? <CellContent date={dayDate_1} availability={availability} /> : <img src={crossImage} />}</td>
+        <td className="text-center imageFill" style={{ height: rowHeight }}>{isInRange(dayDate_2) ? <CellContent date={dayDate_2} availability={availability} /> : <img src={crossImage} />}</td>
+        <td className="text-center imageFill" style={{ height: rowHeight }}>{isInRange(dayDate_3) ? <CellContent date={dayDate_3} availability={availability} /> : <img src={crossImage} />}</td>
+        <td className="text-center imageFill" style={{ height: rowHeight }}>{isInRange(dayDate_4) ? <CellContent date={dayDate_4} availability={availability} /> : <img src={crossImage} />}</td>
+        <td className="text-center imageFill" style={{ height: rowHeight }}>{isInRange(dayDate_5) ? <CellContent date={dayDate_5} availability={availability} /> : <img src={crossImage} />}</td>
+        <td className="text-center imageFill" style={{ height: rowHeight }}>{isInRange(dayDate_6) ? <CellContent date={dayDate_6} availability={availability} /> : <img src={crossImage} />}</td>
+        <td className="text-center imageFill" style={{ height: rowHeight }}>{isInRange(dayDate_7) ? <CellContent date={dayDate_7} availability={availability} /> : <img src={crossImage} />}</td>
     </tr>
 }
 

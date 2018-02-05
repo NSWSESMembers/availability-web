@@ -55,3 +55,9 @@ export function getWeekDay(startDate: moment.Moment, day: number) {
     result.setDate(startDate.toDate().getDate() + (day - 1));
     return moment(result.toDateString()).format("DD-MM");
 }
+
+export function compareDay(date1: Date, date2: Date) {
+    const _day1 = moment(date1.toDateString()).format("DD-MM");
+    const _day2 = moment(date2.toDateString()).format("DD-MM");
+    return (_day1 === _day2);
+}
