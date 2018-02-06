@@ -78,7 +78,7 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
                 </div>
             </div>
             <div className="row">
-                <div className='col-xs-12 col-sm-2'>
+                <div className='col-xs-12 col-md-2'>
                     <DatetimeRangePicker className="pull-left alignWithWidget"
                         startDate={requests.params.startDate}
                         endDate={requests.params.endDate}
@@ -89,8 +89,8 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
                         </button>
                     </DatetimeRangePicker>
                 </div>
-                <div className='col-xs-12 col-sm-10'>
-                    <DropDownMenu value={requests.params.groupCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, Constants.GROUPS_DROPDOWN)} className="pull-left">
+                <div className='col-xs-12 col-md-10'>
+                    <DropDownMenu value={requests.params.groupCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, Constants.GROUPS_DROPDOWN)} className="pull-left marginLarge">
                         {enums.groups.map((el, index) => {
                             return <MenuItem key={el.key} value={el.key} primaryText={el.value} />
                         })}

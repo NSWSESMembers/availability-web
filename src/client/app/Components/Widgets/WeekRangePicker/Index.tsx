@@ -36,22 +36,26 @@ export default class WeekRangePicker extends React.Component<any, any> {
         }
     }
 
+    handleLeftButtonClick() {
+        this._today = addDaysToDate(this._today, -7);
+        this.calculateWeekDays();
+    }
+
+    handleRightButtonClick() {
+        this._today = addDaysToDate(this._today, 7);
+        this.calculateWeekDays();
+    }
+
     render() {
         return <div className={this.props.className + ' input-group'}>
             <span className="input-group-btn">
-                <button className="btn btn-default" type="button"><i className="fa fa-angle-left" onClick={() => {
-                    this._today = addDaysToDate(this._today, -7);
-                    this.calculateWeekDays();
-                }} /></button>
+                <button className="btn btn-default" type="button"><i className="fa fa-angle-left" onClick={this.handleLeftButtonClick.bind(this)} /></button>
             </span>
             <input className="form-control" readOnly
                 style={{ backgroundColor: 'white', textAlign: 'center' }}
-                value={this.state.startDate + "  -->  " + this.state.endDate} />
+                value={this.state.startDate + "  ==>  " + this.state.endDate} />
             <span className="input-group-btn">
-                <button className="btn btn-default" type="button"><i className="fa fa-angle-right" onClick={() => {
-                    this._today = addDaysToDate(this._today, 7);
-                    this.calculateWeekDays();
-                }} /></button>
+                <button className="btn btn-default" type="button"><i className="fa fa-angle-right" onClick={this.handleRightButtonClick.bind(this)} /></button>
             </span>
         </div>
     }

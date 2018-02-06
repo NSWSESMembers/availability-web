@@ -40,6 +40,7 @@
     .text-md-right { text-align: right; }
     .text-md-center { text-align: center; }
     .text-md-justify { text-align: justify; }
+    .marginLarge { margin-left: 64px; }  
 }
 
 @media (min-width: 1200px) {
@@ -47,6 +48,7 @@
     .text-lg-right { text-align: right; }
     .text-lg-center { text-align: center; }
     .text-lg-justify { text-align: justify; }
+    .marginLarge { margin-left: 24px; }  
 }
 
 .imageFill {
