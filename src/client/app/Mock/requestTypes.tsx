@@ -1,7 +1,11 @@
 const requestTypes = [
     {
         key: 1,
-        value: "Field"
+        value: "Local"
+    },
+    {
+        key: 2,
+        value: "Deployment"
     }
 ]
 

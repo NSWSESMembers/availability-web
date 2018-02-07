@@ -114,6 +114,7 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
                         <TableHeader>
                             <TableRow>
                                 <TableHeaderColumn>{strings.requests_tableHeader_name}</TableHeaderColumn>
+                                <TableHeaderColumn>{strings.requests_tableHeader_type}</TableHeaderColumn>
                                 <TableHeaderColumn>{strings.requests_tableHeader_group}</TableHeaderColumn>
                                 <TableHeaderColumn>{strings.requests_tableHeader_capability}</TableHeaderColumn>
                                 <TableHeaderColumn>{strings.requests_tableHeader_priority}</TableHeaderColumn>
@@ -129,6 +130,7 @@ class Requests extends React.Component<RouteComponentProps<{}>, any> {
                                         pathname: '/requests/view-request',
                                         search: '?key=' + details.key
                                     }}>{details.name}</Link></TableHeaderColumn>
+                                    <TableHeaderColumn>{details.typeName}</TableHeaderColumn>
                                     <TableHeaderColumn>{details.groupTitle}</TableHeaderColumn>
                                     <TableHeaderColumn>{details.capabilityTitle}</TableHeaderColumn>
                                     <TableHeaderColumn>{details.priorityTitle}</TableHeaderColumn>

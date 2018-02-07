@@ -30,6 +30,22 @@ const capabilities = [
     {
         key: 7,
         value: "FRO L2"
+    },
+    {
+        key: 8,
+        value: "Planning Officer"
+    },
+    {
+        key: 9,
+        value: "Situation Awareness"
+    },
+    {
+        key: 10,
+        value: "Flood Intel"
+    },
+    {
+        key: 11,
+        value: "Logistics"
     }
 ]
 
