@@ -55,3 +55,11 @@
     padding: 0 !important;
     margin: 0;
 }
+
+.hover {
+    background-color: papayawhip;   
+    width: 300px;
+    height: 150px; 
+    border-style: dotted;
+    border-color: chocolate;
+}

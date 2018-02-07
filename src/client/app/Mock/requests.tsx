@@ -34,6 +34,9 @@ const requests = [
                             { time: "WHOLE DAY", flag: "0" }
                         ]
                     }
+                ],
+                capabilities: [
+                    1, 4, 6
                 ]
             },
             {
@@ -52,6 +55,9 @@ const requests = [
                             { time: "WHOLE DAY", flag: "1" }
                         ]
                     },
+                ],
+                capabilities: [
+                    3, 4, 5
                 ]
             },
             {
@@ -77,6 +83,9 @@ const requests = [
                             { time: "09:00PM - 12:00PM", flag: "2" }
                         ]
                     }
+                ],
+                capabilities: [
+                    6, 7
                 ]
             }
         ]

@@ -169,7 +169,21 @@ export async function getRequest(requestId, startDate, endDate, capabilityCode) 
                 const _requests = requests.filter((item) => {
                     return item.details.key === requestId;
                 });
-                result.request = (_requests.length !== 0 ? _requests[0] : {});
+                result.request = (_requests.length !== 0 ? {
+                    details: _requests[0].details,
+                    people: _requests[0].people.map((el2) => {
+                        return {
+                            key: el2.key,
+                            name: el2.name,
+                            availability: el2.availability,
+                            capabilities: el2.capabilities.map((el3) => {
+                                return capabilities.filter((cap) => {
+                                    return cap.key === el3;
+                                })[0]
+                            })
+                        }
+                    })
+                } : {});
                 break;
             case 401:
                 result.status = 2;

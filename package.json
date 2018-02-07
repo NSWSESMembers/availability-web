@@ -37,6 +37,7 @@
     "react-localization": "^0.1.6",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-tooltip": "^3.4.0",
     "redux": "^3.7.2",
     "uuid": "^3.2.1",
     "webpack": "^3.10.0",
