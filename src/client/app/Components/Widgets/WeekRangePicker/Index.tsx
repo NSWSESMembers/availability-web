@@ -52,7 +52,7 @@ export default class WeekRangePicker extends React.Component<any, any> {
                 <button className="btn btn-default" type="button"><i className="fa fa-angle-left" onClick={this.handleLeftButtonClick.bind(this)} /></button>
             </span>
             <input className="form-control" readOnly
-                style={{ backgroundColor: 'white', textAlign: 'center' }}
+                style={{ backgroundColor: 'white', textAlign: 'center', height: 33 }}
                 value={this.state.startDate + "  ==>  " + this.state.endDate} />
             <span className="input-group-btn">
                 <button className="btn btn-default" type="button"><i className="fa fa-angle-right" onClick={this.handleRightButtonClick.bind(this)} /></button>

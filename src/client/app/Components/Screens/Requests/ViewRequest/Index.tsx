@@ -60,6 +60,21 @@ class ViewRequest extends React.Component<RouteComponentProps<{}>, any> {
         const { details, people } = this.props.request.request;
         const { params } = this.props.request;
         const { history, enums } = this.props;
+        let _people = [];
+
+        if (this._capabilityCode !== -1 && people.length !== 0) {
+            _people = people.filter((el) => {
+                let result = false;
+                Array.prototype.forEach.call(el.capabilities, (el2) => {
+                    if (el2.key === this._capabilityCode) {
+                        result = true;
+                    }
+                })
+                return result;
+            });
+        } else {
+            _people = people;
+        }
 
         return <div className='container-fluid content'>
             <div className='row'>
@@ -99,7 +114,7 @@ class ViewRequest extends React.Component<RouteComponentProps<{}>, any> {
                             </tr>
                         </thead>
                         <tbody>
-                            {people.map((el, index) => {
+                            {_people.map((el, index) => {
                                 return <TableRow key={el.key} person={el} startDate={this._startDate} endDate={this._endDate} requestDetails={details} />
                             })}
                         </tbody>

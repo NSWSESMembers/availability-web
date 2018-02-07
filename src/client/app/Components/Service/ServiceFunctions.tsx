@@ -3,7 +3,7 @@ import * as ServiceDefinitions from './ServiceDefinitions';
 import * as GlobalConfig from '../Configuration/GlobalConfig';
 import { getToken, getAuthUrl, getLogoutUrl } from '../Utilities/AuthService';
 import store from '../Store';
-import { formatDateRange, formatDate } from '../Utilities/DateTimeTools';
+import { formatDateRange, formatDate, getMomentDateObject } from '../Utilities/DateTimeTools';
 import * as moment from 'moment';
 import * as StoreDefinitions from '../StoreDefinitions';
 
@@ -81,7 +81,10 @@ export async function getRequests(startDate: moment.Moment, endDate: moment.Mome
         switch (response.status) {
             case 200:
                 result.status = 1;
-                result.requests = requests;
+                
+                result.requests = requests.filter((el: any) => {
+                    return (getMomentDateObject(new Date(el.details.startDate)) >= startDate || getMomentDateObject(new Date(el.details.endDate)) <= endDate);
+                });
                 break;
             case 401:
                 result.status = 2;

@@ -39,7 +39,7 @@ export default class TableRow extends React.Component<any, any> {
                 onMouseEnter={() => { ReactTooltip.show(this.refs.capabilitiesTip) }}
                 onMouseLeave={() => { ReactTooltip.hide(this.refs.capabilitiesTip) }} />
                 <ReactTooltip />
-                <p ref='capabilitiesTip' data-tip={person.capabilities.map((el) => {
+                <p ref='capabilitiesTip' style={{ display: "inline-block" }} data-tip={person.capabilities.map((el) => {
                     return el.value;
                 })}></p>
             </td>
