@@ -5,13 +5,14 @@ import { mapDispatchToProps } from '../../../StoreDefinitions';
 import strings from '../../../Resources/Strings';
 import { queryStringToValue } from '../../../Utilities/StringTools';
 import RaisedButton from 'material-ui/RaisedButton';
-import { getToday, getWeekDay } from '../../../Utilities/DateTimeTools';
+import { getToday, getWeekDayDate, addDaysToMomentDate } from '../../../Utilities/DateTimeTools';
 import DatetimeRangePicker from '../../../Widgets/DateTimeRangePicker/DatetimeRangePicker';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import * as Constants from '../../../Configuration/Constants';
 import TableRow from './TableRow';
 import WeekRangePicker from '../../../Widgets/WeekRangePicker/Index';
+import HeaderCell from './HeaderCell';
 
 class ViewRequest extends React.Component<RouteComponentProps<{}>, any> {
     _isMounted = true;
@@ -55,6 +56,14 @@ class ViewRequest extends React.Component<RouteComponentProps<{}>, any> {
     }
 
     addNewPerson = () => { }
+
+    generateHeaderCells = () => {
+        const result = [];
+        for (let i: number = 0; i <= this._endDate.diff(this._startDate, 'days'); i++) {
+            result.push(<HeaderCell key={i} date={addDaysToMomentDate(this._startDate, i)} formattedDate={getWeekDayDate(this._startDate, i + 1)} />);
+        }
+        return result;
+    }
 
     render() {
         const { details, people } = this.props.request.request;
@@ -104,13 +113,7 @@ class ViewRequest extends React.Component<RouteComponentProps<{}>, any> {
                         <thead>
                             <tr>
                                 <td><a href='javascript:void(0);' onClick={() => this.addNewPerson()}><i className="fa fa-plus-circle" /> {strings.viewRequest_link_addNewPerson}</a></td>
-                                <td className="text-center">{strings.general_weekday_monday + " (" + getWeekDay(this._startDate, 1) + ")"}</td>
-                                <td className="text-center">{strings.general_weekday_tuesday + " (" + getWeekDay(this._startDate, 2) + ")"}</td>
-                                <td className="text-center">{strings.general_weekday_wednesday + " (" + getWeekDay(this._startDate, 3) + ")"}</td>
-                                <td className="text-center">{strings.general_weekday_thursday + " (" + getWeekDay(this._startDate, 4) + ")"}</td>
-                                <td className="text-center">{strings.general_weekday_friday + " (" + getWeekDay(this._startDate, 5) + ")"}</td>
-                                <td className="text-center">{strings.general_weekday_saturday + " (" + getWeekDay(this._startDate, 6) + ")"}</td>
-                                <td className="text-center">{strings.general_weekday_sunday + " (" + getWeekDay(this._startDate, 7) + ")"}</td>
+                                {this.generateHeaderCells()}
                             </tr>
                         </thead>
                         <tbody>
