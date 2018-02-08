@@ -5,6 +5,10 @@ import { addDaysToDate } from '../../Utilities/DateTimeTools';
 export default class WeekRangePicker extends React.Component<any, any> {
     _today;
 
+    static defaultProps = {
+        period: 14
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -20,15 +24,15 @@ export default class WeekRangePicker extends React.Component<any, any> {
     }
 
     calculateWeekDays = () => {
-        const { onChange } = this.props;
+        const { onChange, period } = this.props;
         const _todayMoment = moment(this._today.toDateString());
         const _day = _todayMoment.day();
         const _startDate = addDaysToDate(this._today, (_day - 1) * (-1));
-        const _endDate = addDaysToDate(this._today, 7 - _day);
+        const _endDate = addDaysToDate(this._today, period - _day);
 
         this.setState({
-            startDate: moment(_startDate.toDateString()).format("DD-MM"),
-            endDate: moment(_endDate.toDateString()).format("DD-MM")
+            startDate: moment(_startDate.toDateString()).format("DD MMM"),
+            endDate: moment(_endDate.toDateString()).format("DD MMM")
         });
 
         if (onChange) {
@@ -37,12 +41,14 @@ export default class WeekRangePicker extends React.Component<any, any> {
     }
 
     handleLeftButtonClick() {
-        this._today = addDaysToDate(this._today, -7);
+        const { period } = this.props;
+        this._today = addDaysToDate(this._today, (-1) * period);
         this.calculateWeekDays();
     }
 
     handleRightButtonClick() {
-        this._today = addDaysToDate(this._today, 7);
+        const { period } = this.props;
+        this._today = addDaysToDate(this._today, period);
         this.calculateWeekDays();
     }
 

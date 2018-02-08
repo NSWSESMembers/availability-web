@@ -96,7 +96,7 @@ class ViewRequest extends React.Component<RouteComponentProps<{}>, any> {
             </div>
             <div className="row">
                 <div className='col-xs-12 col-sm-3'>
-                    <WeekRangePicker className="pull-left alignWithWidget" onChange={(startDate, endDate) => this.handleWeekRangePickerChange(startDate, endDate)} />
+                    <WeekRangePicker period={14} className="pull-left alignWithWidget" onChange={(startDate, endDate) => this.handleWeekRangePickerChange(startDate, endDate)} />
                 </div>
                 <div className='col-xs-12 col-sm-9'>
                     <DropDownMenu value={params.capabilityCode} onChange={(event, index, value) => this.handleDropDownChange(event, index, value, Constants.CAPABILITIES_DROPDOWN)} className="pull-left">

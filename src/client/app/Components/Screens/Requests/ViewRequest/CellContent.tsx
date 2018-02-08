@@ -26,7 +26,7 @@ const CellContent = (props) => {
             backgroundColor: getFlagColor(flag),
             height: height !== null ? height : rowHeight, border: '1px dotted grey',
         }}>
-            <span style={{ color: 'white', fontSize: 11}}>{time}</span>
+            <span style={{ color: 'white', fontSize: 10}}>{time}</span>
         </div>
     }
 
